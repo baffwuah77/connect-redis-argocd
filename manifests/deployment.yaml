@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connect-redis
+  namespace: connect-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: connect-redis
+  template:
+    metadata:
+      labels:
+        app: connect-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.2-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
