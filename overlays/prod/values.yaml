@@ -1,0 +1,30 @@
+# Production Redis Configuration
+replicas: 3
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Enable persistence with larger storage
+persistence:
+  enabled: true
+  size: 20Gi
+  storageClass: premium-ssd
+
+# Enable auth
+auth:
+  enabled: true
+  existingSecret: redis-secret
+
+# High availability
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app: connect-redis
+      topologyKey: kubernetes.io/hostname

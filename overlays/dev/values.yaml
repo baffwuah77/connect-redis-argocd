@@ -1,0 +1,18 @@
+# Development Redis Configuration
+replicas: 1
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# No persistence in dev (faster testing)
+persistence:
+  enabled: false
+
+# No password in dev
+auth:
+  enabled: false
