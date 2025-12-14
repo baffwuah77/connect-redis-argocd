@@ -6,9 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/baffwuah77/connect-redis-argocd.git
-    targetRevision: main
-    path: manifests
+    repoURL: https://git.edusuc.net/WEBFORX/helm-charts.git
+    targetRevision: HEAD
+    path: charts/connect-redis
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: connect-redis
